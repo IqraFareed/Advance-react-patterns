@@ -6,6 +6,11 @@ const initialState ={
     error:"",
     post:{}
 }
+//* idle 
+//* loading
+//* loaded
+//* error 
+
 
 const reducer = (state , action)=>{
     switch(action.type){
