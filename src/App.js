@@ -6,7 +6,8 @@ import DataFetchingTwo from './Components/DataFetchingTwo';
 import Wrapper from './Components/Wrapper';
 import Counter1 from './Components/Counter1';
 import Counter2 from './Components/Counter2';
-
+import SearchUsers from './Components/UserList';
+import SearchTodoList from './Components/TodoList';
 const Checkbox = ({children})=>{
   const [checked ,setChecked] = useState(true)
 
@@ -59,13 +60,13 @@ const Label = ({ children , setChecked})=>{
 function App() {
   return (
     <div className="App">
-      /**compond component */
+      {/* compond component  */}
       <Checkbox>
         <CheckboxInput />
         <Label>Check box label</Label>
       </Checkbox>
 
-      /** use reducer */
+      {/* use reducer  */}
       <DataFetchingTwo />
 
       {/* render props code */}
@@ -80,6 +81,14 @@ function App() {
           return <Counter2 count={count} incCount={incCount} />;
         }}
       />
+
+    {/* HOC */}
+    <h1>Higher order component</h1>
+    <div className='section'>
+    <SearchUsers/>
+    <SearchTodoList/>
+    </div>
+  
     </div>
   );
 }
