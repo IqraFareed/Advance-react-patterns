@@ -3,7 +3,9 @@ import react , {useState , useEffect} from 'react'
 import './App.css';
 import DataFetchingOne from './Components/DataFetchingOne';
 import DataFetchingTwo from './Components/DataFetchingTwo';
-
+import Wrapper from './Components/Wrapper';
+import Counter1 from './Components/Counter1';
+import Counter2 from './Components/Counter2';
 
 const Checkbox = ({children})=>{
   const [checked ,setChecked] = useState(true)
@@ -33,18 +35,19 @@ const Checkbox = ({children})=>{
   return allChildren
 }
 const CheckboxInput=({checked , setChecked})=>{
- 
+  if(!setChecked){
+    throw new Error ('Should be used inside <Checkbox/>')
+  }
   return (
-    <>
-  
-     <input
+
+    <input
      type='checkbox'
      checked={checked}
      onChange={(e)=>{
       setChecked(e.target.checked)
      }}
      />
-     </>
+   
      )
 }
 
@@ -56,13 +59,27 @@ const Label = ({ children , setChecked})=>{
 function App() {
   return (
     <div className="App">
+      /**compond component */
       <Checkbox>
-      <Label>Check box label</Label>
-      <br/>
-        <CheckboxInput/> 
-      
+        <CheckboxInput />
+        <Label>Check box label</Label>
       </Checkbox>
-     <DataFetchingTwo/>
+
+      /** use reducer */
+      <DataFetchingTwo />
+
+      {/* render props code */}
+      <Wrapper
+        render={(count, incCount) => {
+          return <Counter1 count={count} incCount={incCount} />;
+        }}
+      />
+
+      <Wrapper
+        render={(count, incCount) => {
+          return <Counter2 count={count} incCount={incCount} />;
+        }}
+      />
     </div>
   );
 }
