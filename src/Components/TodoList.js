@@ -3,7 +3,7 @@ import HOC from '../HOC'
 const TodoList = ({data}) => {
 
 
-    let renderUser = data?.map((todo)=>{
+    let renderUser = data?.slice(0,10).map((todo)=>{
         return(
             <div key={todo.userId}> 
             <p>

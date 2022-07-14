@@ -14,7 +14,7 @@ const HOC = (WrappedComponent , entity) => {
             const json= await res.json()
 
             this.setState({...this.state , data:json})
-            console.log(json)
+          
         }
         fetchData()
     }
