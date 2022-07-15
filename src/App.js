@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useRef} from 'react';
 import react , {useState , useEffect} from 'react'
 import './App.css';
 import DataFetchingOne from './Components/DataFetchingOne';
@@ -8,6 +8,7 @@ import Counter1 from './Components/Counter1';
 import Counter2 from './Components/Counter2';
 import SearchUsers from './Components/UserList';
 import SearchTodoList from './Components/TodoList';
+import CustomInput from './Components/CustomInput';
 const Checkbox = ({children})=>{
   const [checked ,setChecked] = useState(true)
 
@@ -57,7 +58,14 @@ const Label = ({ children , setChecked})=>{
   return <label onClick={()=> setChecked((state)=> !state)}>{children}</label>
 }
 
+
 function App() {
+  const [input , setInput]= useState('');
+  const inputRef= useRef()
+  const handleFocus=()=>{
+      inputRef.current.focus()
+  }
+
   return (
     <div className="App">
       {/* compond component  */}
@@ -88,7 +96,19 @@ function App() {
     <SearchUsers/>
     <SearchTodoList/>
     </div>
-  
+
+    {/* use ref and forward ref */}
+
+    <CustomInput
+    ref={inputRef}
+    type='text'
+    value={input}
+    style={{marginTop:'150px'}}
+    onChange={(e)=>setInput(e.target.value)}
+    />
+    <hr/>
+    <div>You have entered {input}</div>
+    <button onClick={handleFocus}>Focus</button>
     </div>
   );
 }
